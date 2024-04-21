@@ -59,13 +59,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
-// Thay đổi code ví dụ commit
-
-// Commit demo thứ 2
-
-<<<<<<< HEAD
-// Đây là code của người B
-=======
-print('Đay là code của người A')
->>>>>>> 926123eb3af92a19fbedd65fb0846d99ee54cdc5
