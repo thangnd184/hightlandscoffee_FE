@@ -5,12 +5,14 @@ import 'package:highlandcoffeeapp/pages/auth/auth_user_page.dart';
 import 'package:highlandcoffeeapp/pages/login_and_register/admin/login_admin_with_email_and_password_page.dart';
 import 'package:highlandcoffeeapp/themes/theme.dart';
 
+// Trong lớp ChooseLoginTypePage
 class ChooseLoginTypePage extends StatefulWidget {
   @override
   State<ChooseLoginTypePage> createState() => _ChooseLoginTypePageState();
 }
 
 class _ChooseLoginTypePageState extends State<ChooseLoginTypePage> {
+  bool _isLoggedIn = false;
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -39,7 +41,8 @@ class _ChooseLoginTypePageState extends State<ChooseLoginTypePage> {
               SizedBox(height: 250,),
               ElevatedButton(
                 onPressed: () {
-                  // Di chuyển đến trang đăng nhập User
+                  // Đặt _isLoggedIn về false trước khi chuyển hướng đến trang đăng nhập User
+                  _isLoggedIn = false;
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => AuthUserPage()),
@@ -58,7 +61,8 @@ class _ChooseLoginTypePageState extends State<ChooseLoginTypePage> {
               SizedBox(height: 30),
               ElevatedButton(
                 onPressed: () {
-                  // Di chuyển đến trang đăng nhập Admin
+                  // Đặt _isLoggedIn về false trước khi chuyển hướng đến trang đăng nhập Admin
+                  _isLoggedIn = false;
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => AuthAdminPage()),
