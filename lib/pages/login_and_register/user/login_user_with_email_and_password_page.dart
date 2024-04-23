@@ -8,6 +8,8 @@ import 'package:highlandcoffeeapp/widgets/login_with_more.dart';
 import 'package:highlandcoffeeapp/widgets/my_button.dart';
 import 'package:highlandcoffeeapp/widgets/my_text_form_field.dart';
 import 'package:highlandcoffeeapp/themes/theme.dart';
+import 'package:highlandcoffeeapp/widgets/text_form_field_email.dart';
+import 'package:highlandcoffeeapp/widgets/text_form_field_password.dart';
 
 class LoginUserWithEmailAndPasswordPage extends StatefulWidget {
   final Function()? onTap;
@@ -129,7 +131,7 @@ class _LoginUserWithEmailAndPasswordPageState extends State<LoginUserWithEmailAn
       backgroundColor: background,
       body: Padding(
         padding: const EdgeInsets.only(
-            left: 18.0, top: 110.0, right: 18.0, bottom: 50),
+            left: 18.0, top: 100.0, right: 18.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -143,7 +145,7 @@ class _LoginUserWithEmailAndPasswordPageState extends State<LoginUserWithEmailAn
               height: 190.0,
             ),
             //form email
-            MyTextFormField(
+            TextFormFieldEmail(
               hintText: 'Email',
               prefixIconData: Icons.email,
               suffixIcon: IconButton(
@@ -160,7 +162,7 @@ class _LoginUserWithEmailAndPasswordPageState extends State<LoginUserWithEmailAn
               height: 20.0,
             ),
             //form password
-            MyTextFormField(
+            TextFormFieldPassword(
               hintText: 'Nhập mật khẩu',
               prefixIconData: Icons.vpn_key_sharp,
               suffixIcon: IconButton(
@@ -202,7 +204,7 @@ class _LoginUserWithEmailAndPasswordPageState extends State<LoginUserWithEmailAn
               buttonColor: primaryColors,
             ),
             SizedBox(
-              height: 50.0,
+              height: 40.0,
             ),
             //or continue with
             Row(

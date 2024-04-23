@@ -7,6 +7,8 @@ import 'package:highlandcoffeeapp/widgets/my_button.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:highlandcoffeeapp/themes/theme.dart';
+import 'package:highlandcoffeeapp/widgets/text_form_field_email.dart';
+import 'package:highlandcoffeeapp/widgets/text_form_field_password.dart';
 
 class RegisterAdminWithEmailAndPasswordPage extends StatefulWidget {
   final Function()? onTap;
@@ -131,7 +133,7 @@ void registerAdmin() async {
             SizedBox(
               height: 150.0,
             ),
-            MyTextFormField(
+            TextFormFieldEmail(
               hintText: 'Email',
               prefixIconData: Icons.email,
               suffixIcon: IconButton(
@@ -148,7 +150,7 @@ void registerAdmin() async {
               iconColor: primaryColors,
             ),
             SizedBox(height: 20.0),
-            MyTextFormField(
+            TextFormFieldPassword(
               hintText: 'Nhập mật khẩu',
               prefixIconData: Icons.vpn_key_sharp,
               suffixIcon: IconButton(

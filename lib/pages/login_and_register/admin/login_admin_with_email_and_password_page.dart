@@ -11,6 +11,8 @@ import 'package:highlandcoffeeapp/widgets/login_with_more.dart';
 import 'package:highlandcoffeeapp/widgets/my_button.dart';
 import 'package:highlandcoffeeapp/widgets/my_text_form_field.dart';
 import 'package:highlandcoffeeapp/themes/theme.dart';
+import 'package:highlandcoffeeapp/widgets/text_form_field_email.dart';
+import 'package:highlandcoffeeapp/widgets/text_form_field_password.dart';
 
 class LoginAdminWithEmailAndPassWordPage extends StatefulWidget {
   final Function()? onTap;
@@ -171,7 +173,7 @@ class _LoginAdminWithEmailAndPassWordPageState extends State<LoginAdminWithEmail
               height: 150.0,
             ),
             //form email
-            MyTextFormField(
+            TextFormFieldEmail(
               hintText: 'Email',
               prefixIconData: Icons.email,
               suffixIcon: IconButton(
@@ -191,7 +193,7 @@ class _LoginAdminWithEmailAndPassWordPageState extends State<LoginAdminWithEmail
               height: 20.0,
             ),
             //form password
-            MyTextFormField(
+            TextFormFieldPassword(
               hintText: 'Nhập mật khẩu',
               prefixIconData: Icons.vpn_key_sharp,
               suffixIcon: IconButton(

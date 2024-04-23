@@ -6,6 +6,7 @@ import 'package:get/get_navigation/get_navigation.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:highlandcoffeeapp/components/pages/favorite_product_page.dart';
 import 'package:highlandcoffeeapp/components/pages/list_product_page.dart';
+import 'package:highlandcoffeeapp/widgets/notification.dart';
 import 'package:highlandcoffeeapp/widgets/profile_menu_user.dart';
 import 'package:highlandcoffeeapp/pages/cart/cart_page.dart';
 import 'package:highlandcoffeeapp/pages/home/home_page.dart';
@@ -30,6 +31,30 @@ class _ProfileUserPageState extends State<ProfileUserPage> {
     });
   }
 
+  //
+  void _showConfirmExit() {
+    notificationDialog(
+      context: context,
+      title: "Đăng xuất khỏi tài khoản của bạn?",
+      onConfirm: () {},
+      actions: [
+        TextButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          child: Text("Hủy", style: TextStyle(color: Colors.red)),
+        ),
+        TextButton(
+          onPressed: () {
+            Navigator.pushReplacementNamed(context, '/auth_customer_page');
+          },
+          child: Text("Đồng ý", style: TextStyle(color: Colors.blue)),
+        ),
+      ],
+    );
+  }
+
+  //
   void showImage(BuildContext context) {
     // Tạm thời sử dụng đường dẫn ảnh cố định, bạn có thể thay thế bằng đường dẫn thực tế của ảnh bạn muốn hiển thị.
     String imagePath = 'assets/images/profile/profile_user.jpg';
@@ -266,7 +291,9 @@ class _ProfileUserPageState extends State<ProfileUserPage> {
             ProfileMenuUser(
                 title: 'Đăng xuất',
                 startIcon: Icons.logout,
-                onPress: () {},
+                onPress: () {
+                  _showConfirmExit();
+                },
                 endIcon: false,
                 textColor: grey)
           ]),

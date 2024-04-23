@@ -9,6 +9,8 @@ import 'package:highlandcoffeeapp/widgets/login_with_more.dart';
 import 'package:highlandcoffeeapp/widgets/my_button.dart';
 import 'package:highlandcoffeeapp/widgets/my_text_form_field.dart';
 import 'package:highlandcoffeeapp/themes/theme.dart';
+import 'package:highlandcoffeeapp/widgets/text_form_field_email.dart';
+import 'package:highlandcoffeeapp/widgets/text_form_field_password.dart';
 
 class RegisterUserWithEmailAndPasswordPage extends StatefulWidget {
   final Function()? onTap;
@@ -200,7 +202,7 @@ class _RegisterUserWithEmailAndPasswordPageState extends State<RegisterUserWithE
       backgroundColor: background,
       body: Padding(
         padding: const EdgeInsets.only(
-            left: 18.0, top: 70.0, right: 18.0, bottom: 50),
+            left: 18.0, top: 70.0, right: 18.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -214,7 +216,7 @@ class _RegisterUserWithEmailAndPasswordPageState extends State<RegisterUserWithE
               height: 30.0,
             ),
             //form email
-            MyTextFormField(
+            TextFormFieldEmail(
               hintText: 'Email',
               prefixIconData: Icons.email,
               suffixIcon: IconButton(
@@ -286,7 +288,7 @@ class _RegisterUserWithEmailAndPasswordPageState extends State<RegisterUserWithE
               height: 20.0,
             ),
             //form password
-            MyTextFormField(
+            TextFormFieldPassword(
               hintText: 'Mật khẩu',
               prefixIconData: Icons.vpn_key_sharp,
               suffixIcon: IconButton(
@@ -329,7 +331,7 @@ class _RegisterUserWithEmailAndPasswordPageState extends State<RegisterUserWithE
               obscureText: !isObsecureConfirmPassword,
             ),
             SizedBox(
-              height: 30.0,
+              height: 25.0,
             ),
             //button signinup
             MyButton(
@@ -338,7 +340,7 @@ class _RegisterUserWithEmailAndPasswordPageState extends State<RegisterUserWithE
               buttonColor: primaryColors,
             ),
             SizedBox(
-              height: 30.0,
+              height: 25.0,
             ),
             //or continue with
             Row(
@@ -380,7 +382,7 @@ class _RegisterUserWithEmailAndPasswordPageState extends State<RegisterUserWithE
               ],
             ),
             SizedBox(
-              height: 30,
+              height: 20,
             ),
             //text tip
             Row(
