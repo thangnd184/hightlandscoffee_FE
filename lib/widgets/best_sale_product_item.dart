@@ -1,7 +1,10 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:highlandcoffeeapp/apis/api.dart';
-import 'package:highlandcoffeeapp/models/model.dart';
-import 'package:highlandcoffeeapp/screens/app/product_detail_page.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/get_navigation.dart';
+import 'package:highlandcoffeeapp/models/products.dart';
+import 'package:highlandcoffeeapp/pages/detail/product_detail_page.dart';
 import 'package:highlandcoffeeapp/utils/product/product_form.dart';
 
 class BestSaleProductItem extends StatefulWidget {
@@ -12,17 +15,20 @@ class BestSaleProductItem extends StatefulWidget {
 }
 
 class _BestSaleProductItemState extends State<BestSaleProductItem> {
-  final FavoriteApi api = FavoriteApi();
-  late Future<List<Product>> productsFuture; // Thay đổi từ Stream sang Future
+  late Stream<List<Products>> productsStream;
 
   @override
   void initState() {
     super.initState();
-    // Gọi phương thức để lấy dữ liệu từ API trong hàm initState
-    productsFuture = api.getFavorites();
+    // Set up the stream to listen for changes in the "Best Sale Product" collection
+    productsStream = FirebaseFirestore.instance
+        .collection('Sản phẩm bán chạy nhất')
+        .snapshots()
+        .map((snapshot) =>
+            snapshot.docs.map((doc) => Products.fromDocument(doc)).toList());
   }
 
-  void _navigateToProductDetails(int index, List<Product> products) {
+  void _navigateToProductDetails(int index, List<Products> products) {
     Navigator.push(
       context,
       MaterialPageRoute(
@@ -35,8 +41,8 @@ class _BestSaleProductItemState extends State<BestSaleProductItem> {
   Widget build(BuildContext context) {
     return Container(
       height: 300, // Set a fixed height for GridView
-      child: FutureBuilder<List<Product>>(
-        future: productsFuture,
+      child: StreamBuilder<List<Products>>(
+        stream: productsStream,
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return Center(
@@ -47,7 +53,7 @@ class _BestSaleProductItemState extends State<BestSaleProductItem> {
               child: Text('Error: ${snapshot.error}'),
             );
           } else {
-            List<Product> productPopular = snapshot.data ?? [];
+            List<Products> productPopular = snapshot.data ?? [];
             return GridView.builder(
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,

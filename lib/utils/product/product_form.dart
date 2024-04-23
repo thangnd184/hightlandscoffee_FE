@@ -1,12 +1,10 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:highlandcoffeeapp/models/model.dart';
+import 'package:highlandcoffeeapp/models/products.dart';
 import 'package:highlandcoffeeapp/themes/theme.dart';
 
 class ProductForm extends StatelessWidget {
-  final Product product; // Thay đổi từ Products sang Popular
+  final Products product;
   final VoidCallback onTap;
 
   const ProductForm({required this.product, required this.onTap});
@@ -18,20 +16,19 @@ class ProductForm extends StatelessWidget {
       child: Container(
         padding: EdgeInsets.all(15.0),
         decoration: BoxDecoration(
-          color: white,
-          borderRadius: BorderRadius.circular(15.0),
-        ),
+            color: white, borderRadius: BorderRadius.circular(15.0)),
+        // Customize your card widget based on the product details
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Image.memory(
-              base64Decode(product.image),
-            ),
+            // Display product information (e.g., image, name, etc.)
+            // Example:
+            Image.network(product.imagePath),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  product.product_name,
+                  product.name,
                   style: GoogleFonts.arsenal(
                       color: black, fontSize: 19, fontWeight: FontWeight.bold),
                 ),
@@ -44,17 +41,18 @@ class ProductForm extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      product.size_m_price.toStringAsFixed(3) + 'đ',
+                      product.oldPrice.toStringAsFixed(3) + 'đ',
                       style: GoogleFonts.roboto(
-                        color: grey,
-                        fontSize: 15,
-                      ),
+                          color: grey,
+                          fontSize: 15,
+                          decoration: TextDecoration.lineThrough),
                     ),
                     SizedBox(
                       height: 3,
                     ),
+                    //new price
                     Text(
-                      product.size_s_price.toStringAsFixed(3) + 'đ',
+                      product.newPrice.toStringAsFixed(3) + 'đ',
                       style: GoogleFonts.roboto(
                           color: primaryColors,
                           fontSize: 17,
@@ -73,6 +71,7 @@ class ProductForm extends StatelessWidget {
                 )
               ],
             )
+            // Add other product details as needed
           ],
         ),
       ),

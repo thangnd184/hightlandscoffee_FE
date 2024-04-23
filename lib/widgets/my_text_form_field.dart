@@ -10,7 +10,7 @@ class MyTextFormField extends StatefulWidget {
   final Color iconColor;
   final TextEditingController controller;
   final bool obscureText;
-  final List<TextInputFormatter>? inputFormatters;
+  final List<TextInputFormatter>? inputFormatters; // Thêm tham số inputFormatters
 
   const MyTextFormField({
     Key? key,
@@ -20,7 +20,7 @@ class MyTextFormField extends StatefulWidget {
     required this.controller,
     required this.iconColor,
     this.obscureText = false,
-    this.inputFormatters,
+    this.inputFormatters, // Thêm inputFormatters vào constructor
   }) : super(key: key);
 
   @override
@@ -33,7 +33,7 @@ class _MyTextFormFieldState extends State<MyTextFormField> {
     return TextFormField(
       controller: widget.controller,
       obscureText: widget.obscureText,
-      inputFormatters: widget.inputFormatters,
+      inputFormatters: widget.inputFormatters, // Sử dụng inputFormatters từ widget cha
       validator: (text) {
         if (text == null || text.isEmpty) {
           return 'Required ${widget.hintText}';
