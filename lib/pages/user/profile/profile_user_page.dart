@@ -57,7 +57,7 @@ class _ProfileUserPageState extends State<ProfileUserPage> {
   //
   void showImage(BuildContext context) {
     // Tạm thời sử dụng đường dẫn ảnh cố định, bạn có thể thay thế bằng đường dẫn thực tế của ảnh bạn muốn hiển thị.
-    String imagePath = 'assets/images/profile/profile_user.jpg';
+    String imagePath = '';
 
     showCupertinoModalPopup(
       context: context,

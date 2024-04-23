@@ -40,7 +40,6 @@ class _LoginUserWithEmailAndPasswordPageState extends State<LoginUserWithEmailAn
         password: password,
       );
 
-      // Kiểm tra xem người dùng có quyền Admin không
       QuerySnapshot users = await FirebaseFirestore.instance
           .collection('Users')
           .where('email', isEqualTo: email)
@@ -48,21 +47,47 @@ class _LoginUserWithEmailAndPasswordPageState extends State<LoginUserWithEmailAn
           .get();
 
       if (users.docs.isNotEmpty) {
-        String userName = users.docs[0]['email']; // Đổi thành tên trường chứa tên email trong Firestore
+        String userName = users.docs[0]['email'];
         showSuccessAlert("Đăng nhập thành công với email: $userName");
-        // Hoặc chuyển đến trang HomePage ở đây
         Navigator.pushReplacementNamed(context, '/home_page');
       } else {
-        // Đăng nhập thông thường
         showSuccessAlert("Đăng nhập thành công với email: $email");
       }
       showSuccessAlert("Đăng nhập thành công với email: $email");
     } on FirebaseAuthException catch (e) {
-      // Handle authentication errors here
+      showNotification("Email hoặc mật khẩu không chính xác");
       print("Authentication Error: ${e.message}");
     }
   }
 }
+
+//
+void showNotification(String message) {
+    showCupertinoDialog(
+      context: context,
+      builder: (context) {
+        return CupertinoAlertDialog(
+          title: Text(
+            "Thông báo",
+            style: GoogleFonts.arsenal(
+              color: primaryColors,
+              fontWeight: FontWeight.bold,
+              fontSize: 18,
+            ),
+          ),
+          content: Text(message),
+          actions: [
+            CupertinoDialogAction(
+              child: Text("OK", style: TextStyle(color: blue)),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
 
   void dispose() {
     _emailController.text.trim();

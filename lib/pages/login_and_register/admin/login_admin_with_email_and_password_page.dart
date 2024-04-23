@@ -37,7 +37,6 @@ class _LoginAdminWithEmailAndPassWordPageState extends State<LoginAdminWithEmail
     String password = _passWordController.text.trim();
 
     if (email.isEmpty || password.isEmpty) {
-      // Show an alert if either email or password is empty
       showEmptyFieldsAlert();
     } else {
       try {
@@ -47,7 +46,6 @@ class _LoginAdminWithEmailAndPassWordPageState extends State<LoginAdminWithEmail
           password: password,
         );
 
-        // Kiểm tra xem người dùng có quyền Admin không
         QuerySnapshot admins = await FirebaseFirestore.instance
             .collection('Admins')
             .where('email', isEqualTo: email)
@@ -56,9 +54,8 @@ class _LoginAdminWithEmailAndPassWordPageState extends State<LoginAdminWithEmail
 
         if (admins.docs.isNotEmpty) {
           String adminName = admins.docs[0]
-              ['email']; // Đổi thành tên trường chứa tên email trong Firestore
+              ['email'];
           showSuccessAlert("Đăng nhập thành công với email: $adminName");
-          // Hoặc chuyển đến trang AdminPage ở đây
           Navigator.pushReplacementNamed(context, '/admin_page');
         } else {
           // Đăng nhập thông thường
@@ -66,7 +63,6 @@ class _LoginAdminWithEmailAndPassWordPageState extends State<LoginAdminWithEmail
         }
         showSuccessAlert("Đăng nhập thành công với email: $email");
       } on FirebaseAuthException catch (e) {
-        // Handle authentication errors here
         print("Authentication Error: ${e.message}");
       }
     }

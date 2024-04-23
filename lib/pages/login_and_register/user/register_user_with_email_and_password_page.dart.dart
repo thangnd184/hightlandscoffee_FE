@@ -66,14 +66,12 @@ class _RegisterUserWithEmailAndPasswordPageState extends State<RegisterUserWithE
     );
 
     if (userCredential.user != null) {
-      // Sau khi xác thực thành công, thêm chi tiết người dùng
       addUserDetail(email, phoneNumber, address, userName, password, confirmPassword);
 
       showSuccessAlert("Đăng ký thành công với email: $email");
     }
     showSuccessAlert("Đăng ký thành công với email: $email");
   } on FirebaseAuthException catch (e) {
-    // Xử lý lỗi xác thực ở đây
     print("Lỗi xác thực: ${e.message}");
   }
 }
