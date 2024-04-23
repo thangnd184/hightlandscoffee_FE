@@ -231,7 +231,7 @@ class _LoginAdminWithEmailAndPassWordPageState extends State<LoginAdminWithEmail
               buttonColor: primaryColors,
             ),
             SizedBox(
-              height: 50.0,
+              height: 30.0,
             ),
             //or continue with
             Row(
@@ -255,7 +255,7 @@ class _LoginAdminWithEmailAndPassWordPageState extends State<LoginAdminWithEmail
               ],
             ),
             SizedBox(
-              height: 50.0,
+              height: 30.0,
             ),
             //or login with facebook, email, google,...
             Center(

@@ -18,7 +18,7 @@ class _AuthAdminPageState extends State<AuthAdminPage> {
     FirebaseAuth.instance.authStateChanges().listen((user) {
       if (user == null) {
         Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (context) => LoginRegisterSwitcherUserPage()),
+          MaterialPageRoute(builder: (context) => const LoginRegisterSwitcherAdminPage()),
         );
       }
     });
